@@ -1,12 +1,14 @@
 const express = require("express")
 const path = require("path")
+const exphbs = require("express-handlebars")
 
 const app = express();
 app.use(express.json());
 
 // app.use(express.static(path.join(__dirname, "static")))
 app.use("/", require(path.join(__dirname, "routes/blog.js")))
-
+app.engine("handlebars", exphbs.engine());
+app.set("view engine", "handlebars")
 // app.get("/" , (req, res) => {
 //     res.send("Hello world")
 // })
